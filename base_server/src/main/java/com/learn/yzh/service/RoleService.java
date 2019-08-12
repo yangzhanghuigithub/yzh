@@ -1,8 +1,10 @@
 package com.learn.yzh.service;
 
 import com.learn.yzh.config.FeignConfig;
+import com.learn.yzh.entity.Role;
+import com.learn.yzh.service.impl.RoleServiceImpl;
 import feign.RequestLine;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 
 /**
  * <p>
@@ -12,7 +14,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  * @author yzh
  * @since 2019-03-06
  */
-@FeignClient(value = "base-server", configuration = FeignConfig.class)
+@FeignClient(value = "order-server", configuration = FeignConfig.class, fallback = RoleServiceImpl.class)
 //@Headers({"Content-Type: application/json","Accept: application/json"})
 public interface RoleService{
 

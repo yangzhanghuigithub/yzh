@@ -15,6 +15,8 @@
       <module>yzh_entity</module>
       <module>yzh_common</module>
       <module>config_server</module>
+      <module>turbin_server</module>
+      <module>zuul_server</module>
   </modules>
 
   <parent>
@@ -49,19 +51,39 @@
           <scope>test</scope>
       </dependency>
       <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-security</artifactId>
-          <version>2.1.2.RELEASE</version>
-      </dependency>
-      <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
           <version>2.1.2.RELEASE</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
-          <artifactId>spring-cloud-starter-feign</artifactId>
-          <version>1.4.7.RELEASE</version>
+          <artifactId>spring-cloud-starter-openfeign</artifactId>
+          <version>2.1.2.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.feign</groupId>
+          <artifactId>feign-core</artifactId>
+          <version>8.18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.feign</groupId>
+          <artifactId>feign-jackson</artifactId>
+          <version>8.18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.feign</groupId>
+          <artifactId>feign-slf4j</artifactId>
+          <version>8.18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.feign</groupId>
+          <artifactId>feign-ribbon</artifactId>
+          <version>8.18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.feign</groupId>
+          <artifactId>feign-httpclient</artifactId>
+          <version>8.18.0</version>
       </dependency>
       <dependency>
           <groupId>net.logstash.logback</groupId>
@@ -72,11 +94,6 @@
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-config</artifactId>
           <version>2.1.2.RELEASE</version>
-      </dependency>
-      <dependency>
-          <groupId>com.alibaba</groupId>
-          <artifactId>druid-spring-boot-starter</artifactId>
-          <version>1.1.18</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
@@ -98,6 +115,26 @@
           <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
           <version>2.1.2.RELEASE</version>
       </dependency>
+      <dependency>
+          <groupId>io.github.lvyahui8</groupId>
+          <artifactId>spring-boot-data-aggregator-starter</artifactId>
+          <version>1.0.2</version>
+      </dependency>
+      <dependency>
+          <groupId>de.codecentric</groupId>
+          <artifactId>spring-boot-admin-starter-client</artifactId>
+          <version>2.1.2</version>
+      </dependency>
+      <dependency>
+          <groupId>cn.springcloud.feign</groupId>
+          <artifactId>venus-cloud-starter-feign</artifactId>
+          <version>1.0.0</version>
+      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.cloud</groupId>-->
+          <!--<artifactId>spring-cloud-starter-stream-rabbit</artifactId>-->
+          <!--<version>2.1.2.RELEASE</version>-->
+      <!--</dependency>-->
   </dependencies>
 
     <dependencyManagement>
