@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/config_server/target/
+/config_server/target/config_server-1.0-SNAPSHOT.jar.original
+/config_server/target/config_server-1.0-SNAPSHOT.jar
