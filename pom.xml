@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>eureka_server</module>
+      <module>eureka_server</module>
       <module>base_server</module>
       <module>order_server</module>
       <module>yzh_entity</module>
@@ -27,7 +27,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <spring-cloud.version>Edgware.SR2</spring-cloud.version>
+    <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
   </properties>
 
   <dependencies>
