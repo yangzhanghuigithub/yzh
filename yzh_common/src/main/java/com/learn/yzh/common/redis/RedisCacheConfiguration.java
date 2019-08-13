@@ -31,14 +31,12 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
     @Value("${spring.redis.port}")
     private int port;
 
-    @Value("${spring.redis.timeout}")
-    private int timeout;
+    private int timeout = 30000;
 
-    @Value("${spring.redis.pool.max-idle}")
+    @Value("${spring.redis.jedis.pool.max-idle}")
     private int maxIdle;
 
-    @Value("${spring.redis.pool.max-wait}")
-    private long maxWaitMillis;
+    private long maxWaitMillis = 1000;
 
     @Value("${spring.redis.password}")
     private String password;
