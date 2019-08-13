@@ -1,5 +1,6 @@
 package com.learn.yzh.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -31,6 +32,10 @@ public class RolePermission extends Model<RolePermission> {
 
     private String permissionId;
 
+    @TableField(exist = false)
+    private String url;
+    @TableField(exist = false)
+    private String roleName;
 
     @Override
     protected Serializable pkVal() {

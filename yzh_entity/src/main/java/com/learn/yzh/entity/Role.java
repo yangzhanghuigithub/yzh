@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,7 +26,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tp_role")
-public class Role extends Model<Role> {
+public class Role extends Model<Role> implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,4 +53,8 @@ public class Role extends Model<Role> {
         return this.id;
     }
 
+    @Override
+    public String getAuthority() {
+        return roleName;
+    }
 }

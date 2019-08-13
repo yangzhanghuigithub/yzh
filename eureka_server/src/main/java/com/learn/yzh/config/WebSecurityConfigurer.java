@@ -12,5 +12,6 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         super.configure(http);
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll().and().logout().permitAll();//配置不需要登录验证
         }
 }

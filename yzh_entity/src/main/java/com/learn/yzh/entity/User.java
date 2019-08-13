@@ -7,8 +7,12 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -22,7 +26,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tp_user")
-public class User extends Model<User> {
+public class User extends Model<User> implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -53,11 +57,41 @@ public class User extends Model<User> {
     private String password;
 
     @TableField(exist = false)
-    private Role[] roles;
+    private List<Role> roles;
 
 
     @Override
     protected Serializable pkVal() {
         return this.id;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

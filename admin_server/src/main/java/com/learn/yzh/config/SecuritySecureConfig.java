@@ -24,10 +24,10 @@ public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll().and().logout().permitAll();//配置不需要登录验证路径
         SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
         successHandler.setTargetUrlParameter("redirectTo");
         successHandler.setDefaultTargetUrl(adminContextPath + "/");
-
         http.authorizeRequests()
                 //授予对所有静态资产和登录页面的公共访问权限。
                 .antMatchers(adminContextPath + "/assets/**").permitAll()
@@ -42,5 +42,4 @@ public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().and();
         // @formatter:on
     }
-
 }
