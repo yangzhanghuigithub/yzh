@@ -13,6 +13,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,6 +29,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @EnableHystrix
 @EnableHystrixDashboard
+@EnableElasticsearchRepositories
 public class BaseServer {
     public static void main( String[] args ){
         SpringApplication.run(BaseServer.class, args);
@@ -45,6 +47,7 @@ public class BaseServer {
                 new HystrixMetricsStreamServlet(), "/actuator/hystrix.stream");
         registration.setName("hystrixServlet");
         registration.setLoadOnStartup(1);
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         return registration;
     }
 }

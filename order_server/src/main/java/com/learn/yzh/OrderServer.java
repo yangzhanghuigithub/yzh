@@ -48,6 +48,7 @@ public class OrderServer {
         ServletRegistrationBean registration = new ServletRegistrationBean(
                 new HystrixMetricsStreamServlet(), "/actuator/hystrix.stream");
         registration.setName("hystrixServlet");
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         registration.setLoadOnStartup(1);
         return registration;
     }
