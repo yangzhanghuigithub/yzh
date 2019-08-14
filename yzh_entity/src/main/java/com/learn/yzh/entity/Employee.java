@@ -1,15 +1,17 @@
 package com.learn.yzh.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDate;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -23,6 +25,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("employee")
+@Document(indexName = "employee")
 public class Employee extends Model<Employee> {
 
     private static final long serialVersionUID = 1L;
@@ -31,7 +34,7 @@ public class Employee extends Model<Employee> {
      * 员工编号
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private String id;
 
     /**
      * 员工姓名

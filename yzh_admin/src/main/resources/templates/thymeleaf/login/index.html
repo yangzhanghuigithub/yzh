@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>管理系统</title>
+    <meta http-equiv="content-type" content="txt/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <meta name="keywords"
+          content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates"/>
+    <link th:href="@{/css/login/style.css}" rel='stylesheet' type='text/css'/>
+
+</head>
+<body>
+<div th:replace="commons/common"></div>
+<script>
+    $(document).ready(function (c) {
+        $('.close').on('click', function (c) {
+            $('.login-form').fadeOut('slow', function (c) {
+                $('.login-form').remove();
+            });
+        });
+    });
+</script>
+<!--SIGN UP-->
+<h1>klasikal Login Form</h1>
+<div class="login-form">
+    <div class="close"></div>
+    <div class="head-info">
+        <label class="lbl-1"> </label>
+        <label class="lbl-2"> </label>
+        <label class="lbl-3"> </label>
+    </div>
+    <div class="clear"></div>
+    <div class="avtar">
+        <img th:src="@{/css/image/login/avtar.png}"/>
+    </div>
+    <form id="loginForm" method="post" action="/index/login.do">
+        <input type="text" class="text" value="Username" name="username" id="username"
+               onblur="if (this.value == '') {this.value = 'Username';}"/>
+        <div class="key">
+            <input type="password" value="Password" name="password" id="password"
+                   onblur="if (this.value == '') {this.value = 'Password';}"/>
+        </div>
+        <div class="verify" style="display: block;float: left;width: 68%;">
+            <input type="text" value="Verify" style="width: 170px;" name="valicode" id="valicode"
+                   onblur="if (this.value == '') {this.value = 'Verify';}"/>
+        </div>
+        <div class="fr mt6" style="display: block;float: left;margin-top: 13px;">
+            <img id="checkImg" class="code-icon" src="/index/getCodeImg.do?time=0" onclick="checkCode()" style="width: 120px;">
+        </div>
+    </form>
+    <div class="signin" style="margin-top: 72px;">
+        <input type="submit" value="Login" onclick="login()"/>
+    </div>
+</div>
+<div class="copy-rights">
+    <p>Copyright &copy; Company name All rights reserved.More Templates <a href="http://www.sucaihuo.com/"
+                                                                           target="_blank" title="klasikal Login Form">klasikal
+        Login Form</a></p>
+</div>
+<script>
+    function checkCode() {
+        var myDate = new Date();
+        var time = myDate.getTime();
+        $("#checkImg").attr("src", '/getCodeImg.do?time=' + time);
+    }
+
+    $(".check").click(function () {
+        $(this).toggleClass("cur");
+    });
+    function login(){
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var valicode = $("#valicode").val();
+
+        $.post("/index/login.do", {"username": username, "password": password, "valicode": valicode},function(data){
+            if (data.resultData) {
+                window.location.href = data.resultData;
+            } else {
+                if(data.resultDesc) {
+                    layer.msg(data.resultDesc);
+                }
+                window.setTimeout(function () {
+                    checkCode()
+                }, 500)
+            }
+        },"json");
+    }
+</script>
+
+</body>
+</html>

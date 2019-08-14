@@ -1,0 +1,154 @@
+<%@ page pageEncoding="UTF-8" %>
+<script type="text/javascript" src="${ctx}/js/lib/jquery.datetimepicker.js"></script>
+<%--js分页和模板插件--%>
+<script src="${ctx}/js/lib/jquery.easyui.min.js"></script>
+<script src="${ctx}/js/lib/jsrender.min.js"></script>
+<script src="${ctx}/js/lib/jsrender-converts.js"></script>
+<script src="${ctx}/js/lib/mricode.pagination.js"></script>
+<script id="takeout" type="text/x-jrender">
+    <div class="movBox clearfix p20 bgc-f9">
+                <div>
+                    <div>
+                        <div class="label labelWid1 relative">
+                            成交订单总额
+                            <i class="whats"></i>
+                            <p class="modify-what">成功状态的订单总额</p>
+                        </div>
+                        <b>
+                         {{if orderShouldPay}}
+                                {{: orderShouldPay}}
+                         {{else}}
+                                0.00
+                          {{/if}}
+                        <i>元</i></b>
+                        <span class="mt10 color-gray8c">
+                        {{if orderCount}}
+                             {{: orderCount}}
+                        {{else}}
+                            0
+                        {{/if}}
+                        笔
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="label labelWid1 relative">
+                            影院实收
+                            <i class="whats"></i>
+                            <p class="modify-what whats-right">指用户用微信、支付宝和储值卡、柜台卡支付的金额</p>
+                        </div>
+                        <b class="color-green">
+                        +
+                        {{if orderTotalPayAmount}}
+                            {{: orderTotalPayAmount}}
+                        {{else}}
+                            0.00
+                        {{/if}}
+                        <i>元</i></b>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="label labelWid1 relative">
+                            影院优惠
+                            <i class="whats"></i>
+                            <p class="modify-what whats-right">影院优惠=成交订单总额-影院实收</p>
+                        </div>
+                        <b >
+                        -
+                       {{if orderDiscountAmount}}
+                                {{: orderDiscountAmount}}
+                        {{else}}
+                                0.00
+                        {{/if}}
+                        <i>元</i></b>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="label labelWid1 relative">
+                            退款总额
+                            <i class="whats"></i>
+                            <p class="modify-what whats-special">已退款完成的订单总额</p>
+                        </div>
+                        <b>
+                         {{if refundAmount}}
+                                {{: refundAmount}}
+                        {{else}}
+                                0.00
+                        {{/if}}
+                      <i>元</i></b>
+                        <span class="mt10 color-gray8c">
+                        {{if refundOrderCount}}
+                                {{: refundOrderCount}}
+                        {{else}}
+                                0
+                        {{/if}}
+                        笔</span>
+                    </div>
+                </div>
+            </div>
+</script>
+<!--商品详细信息-->
+<script id="sellerInfo" type="text/x-jrender">
+   {{if #parent.data.length==1}}
+                            <div>
+                                    <p>{{: sellName }}</p>
+                                    <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+                            </div>
+    {{else #index+1 < #parent.data.length}}
+            <div class="has-bb  mt8">
+                <p>{{: sellName }}</p>
+                <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+            </div>
+     {{else}}
+              <div>
+                    <p>{{: sellName }}</p>
+                    <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+                </div>
+   {{/if}}
+</script>
+<%--影票信息--%>
+<script id="ticketInfo" type="text/x-jrender">
+      <div>
+            <p class="mb7">{{: filmName}}<i class="typeD ml5">{{: filmSight}}</i></p>
+            <p class="mb7">{{: cinemaName}}
+
+           {{: hallName}}</p>
+            <p>场次：{{: showStartTime}}</p>
+        </div>
+
+</script>
+<script id="realPayInfo" type="text/x-jrender">
+     <div>
+                                    <p class="color-red mb10">{{formatDecimal: (orderTotalPayAmount ? orderTotalPayAmount :0)/100}}</p>
+                                    {{if payChannel}}
+                                        <p class="orange mb7">{{: payChannel}}</p>
+                                    {{/if}}
+                                    {{if paymentCode}}
+                                           <p class="mb7">流水号：{{: paymentCode}}</p>
+                                    {{/if}}
+    </div>
+</script>
+
+<script id="refundInfo" type="text/x-jrender">
+    <div>
+                                    <p class="mb10 color-red">总金额：{{formatDecimal: (orderSubsidyAmount ? orderSubsidyAmount :0)/100}}元</p>
+                                    {{props subsidy}}
+                                        {{if key="票务促销"}}
+                                            <p class="orange">{{>key}}：{{formatDecimal: prop/100}}</p>
+                                        {{else}}
+                                            <p>{{>key}}：{{formatDecimal: prop/100}}元</p>
+                                        {{/if}}
+                                    {{/props}}
+    </div>
+</script>
+<script id="discountInfo" type="text/x-jrender" >
+         <p class="mb10 color-red">总金额：{{formatDecimal: (orderTotalDiscountAmount ? orderTotalDiscountAmount :0)/100}}元</p>
+                                    {{props discount}}
+                                            <p class="orange">{{>key}}：{{formatDecimal: prop/100}}</p>
+                                    {{/props}}
+</script>
+<script src="${ctx}/js/mod/common.js"></script>
+<script src="${ctx}/js/mod/takeout/takeoutOrder.js"></script>

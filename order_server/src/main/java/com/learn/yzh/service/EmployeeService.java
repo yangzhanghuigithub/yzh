@@ -13,4 +13,6 @@ import com.learn.yzh.entity.Employee;
  */
 public interface EmployeeService extends IService<Employee> {
 
+    Employee updateEmployeeById(Employee employee);
+
 }

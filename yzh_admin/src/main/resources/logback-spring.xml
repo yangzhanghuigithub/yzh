@@ -11,17 +11,19 @@
         </appender>
 
         <!-- 项目日志 -->
-        <logger name="com.learn.yzh" level="DEBUG"  />
+        <logger name="com.ingcore" level="DEBUG"  />
         <!-- 打印sql  -->
         <logger name="java.sql.PreparedStatement" level="DEBUG" />
         <logger name="java.sql.ResultSet" level="DEBUG" />
 
-        <appender name="LOGSTASH"
-                  class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-            <destination>192.168.0.123:5044</destination>
-            <!-- 日志输出编码 -->
-            <encoder
-                    class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <!-- 为logstash输出的json格式的Appender -->
+        <appender name="LOGSTASH" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_FILE}.json</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_FILE}.json.%d{yyyy-MM-dd}.gz</fileNamePattern>
+                <maxHistory>7</maxHistory>
+            </rollingPolicy>
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
                 <providers>
                     <timestamp>
                         <timeZone>UTC</timeZone>
@@ -127,7 +129,7 @@
 
         <!-- 连接生产环境调试时，修改下面两个日志级别即可 -->
         <!-- 项目日志 -->
-        <logger name="com.learn.yzh" level="INFO" additivity="false">
+        <logger name="com.ingcore" level="INFO" additivity="false">
             <appender-ref ref="logfile" />
         </logger>
         <!-- 其他日志默认error级别 -->

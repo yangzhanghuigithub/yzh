@@ -30,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 @EnableHystrixDashboard
 @RestController
+//@EnableElasticsearchRepositories
 public class OrderServer {
     public static void main( String[] args ){
         SpringApplication.run(OrderServer.class, args);

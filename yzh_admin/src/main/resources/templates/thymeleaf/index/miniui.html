@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>影核常用工具</title>
+    <div th:replace="commons/common"></div>
+    <Link rel="icon" th:href="@{/image/bottom_logo.jpg}">
+    <script type="text/javascript" th:src="@{/common/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/common/miniui/scripts/boot.js}"></script>
+    <script type="text/javascript" th:src="@{/common/miniui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+    <script type="text/javascript" th:src="@{/common/miniui/frame/frame1/res/menu/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/common/miniui/frame/frame1/res/menutip.js}"></script>
+    <link rel="stylesheet" th:href="@{/common/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/common/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/common/bootstrap/css/bootstrap-theme.min.css}">
+    <link rel="stylesheet" th:href="@{/common/miniui/res/third-party/scrollbar/jquery.mCustomScrollbar.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/common/miniui/frame/frame1/res/menu/menu.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/common/miniui/frame/frame1/res/tabs.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/common/miniui/frame/frame1/res/frame.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/common/miniui/frame/frame1/res/index.css}" type="text/css" />
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        .pointlogo{
+            overflow:hidden;
+            background-repeat: no-repeat;
+            background-position: -200px -240px;
+        }
+        .btn{
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-header">
+        <div class="navbar-brand">
+            <img th:src="@{/image/logo2.png}" style="margin-top: -11px;margin-left: 21px;">
+        </div>
+        <div class="navbar-brand navbar-brand-compact pointlogo" style="width: 53px;">
+            <img th:src="@{/image/logo2.png}" style="margin-top: -11px;margin-left: -7px;">
+        </div>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a id="toggle"><span class="fa fa-bars" ></span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-hand-pointer-o"></i><span >系统演示</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-puzzle-piece"></i><span >开发文档</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >人力资源</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa  fa-cog"></i><span >系统设置</span></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
+        <li><a href="#"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle userinfo">
+                <img class="user-img" th:src="@{/common/miniui/frame/frame1/res/images/user.jpg}" />个人资料<i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li>
+                <li><a href="#"><i class="fa fa-user"></i> 退出登录</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <div style="margin-left:4px;">
+            <button class="btn btn-success">
+                <i class="ace-icon fa fa-signal"></i>
+            </button>
+            <button class="btn btn-info">
+                <i class="ace-icon fa fa-pencil"></i>
+            </button>
+            <!-- #section:basics/sidebar.layout.shortcuts -->
+            <button class="btn btn-warning">
+                <i class="ace-icon fa fa-users"></i>
+            </button>
+            <button class="btn btn-danger">
+                <i class="ace-icon fa fa-cogs"></i>
+            </button>
+            <button class="btn btn-primary">
+                <i class="glyphicon glyphicon-eye-open"></i>
+            </button>
+        </div>
+
+        <div id="mainMenu"></div>
+    </div>
+
+    <div class="main">
+        <div id="mainTabs" class="mini-tabs main-tabs" activeIndex="0" style="height:100%;" plain="false"
+             buttons="#tabsButtons" arrowPosition="side" >
+            <div name="index" iconCls="fa-android" title="控制台">
+
+                <div id="myCarousel" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="http://img.zcool.cn/community/010f3456f108876ac7257d207b13cc.jpg@2o.jpg" alt="First slide">
+                            <div class="carousel-caption">
+                                The First
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://img.zcool.cn/community/010f3456f108876ac7257d207b13cc.jpg@2o.jpg" alt="Second slide">
+                            <div class="carousel-caption">
+                                The Second
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://img.zcool.cn/community/010f3456f108876ac7257d207b13cc.jpg@2o.jpg" alt="Third slide">
+                            <div class="carousel-caption">
+                                The Third
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="carousel-control left" href="#myCarousel"
+                       data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="carousel-control right" href="#myCarousel"
+                       data-slide="next"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+
+                <hr style="height:3px;border:none;border-top:3px double red;margin-top: 25px;" />
+
+                <div style="text-align: center;background-color: #fff;margin-top: 25px;">
+                    <!-- 底部固定区域 -->
+                    <img th:src="@{/image/bottom_logo.jpg}" alt="影核" style="width: 20px;">Copyright © 2018 <a>影核</a>. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+        <div id="tabsButtons">
+            <a class="tabsBtn"><i class="fa fa-home"></i></a>
+            <a class="tabsBtn"><i class="fa fa-refresh"></i></a>
+            <a class="tabsBtn"><i class="fa fa-remove"></i></a>
+            <a class="tabsBtn"><i class="fa fa-arrows-alt"></i></a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    function activeTab(item) {
+        var tabs = mini.get("mainTabs");
+        var tab = tabs.getTab(item.id);
+        if (!tab) {
+            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
+            tab = tabs.addTab(tab);
+        }
+        tabs.activeTab(tab);
+    }
+
+    $(function () {
+
+        //menu
+        var menu = new Menu("#mainMenu", {
+            itemclick: function (item) {
+                if (!item.children) {
+                    activeTab(item);
+                }
+            }
+        });
+
+        $(".sidebar").mCustomScrollbar({ autoHideScrollbar: true });
+
+        new MenuTip(menu);
+
+        $.ajax({
+            url: "/common/miniui/frame/frame1/data/menu.txt",
+            success: function (text) {
+                var data = mini.decode(text);
+                menu.loadData(data);
+            }
+        })
+
+        //toggle
+        $("#toggle, .sidebar-toggle").click(function () {
+            $('body').toggleClass('compact');
+
+            mini.layout();
+        });
+
+        //dropdown
+        $(".dropdown-toggle").click(function (event) {
+            $(this).parent().addClass("open");
+            return false;
+        });
+
+        $(document).click(function (event) {
+            $(".dropdown").removeClass("open");
+        });
+    });
+
+</script>
+</body>
+</html>

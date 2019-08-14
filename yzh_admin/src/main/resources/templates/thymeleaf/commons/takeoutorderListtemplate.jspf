@@ -1,0 +1,104 @@
+<%@ page pageEncoding="UTF-8" %>
+<script type="text/javascript" src="${ctx}/js/lib/jquery.datetimepicker.js"></script>
+<%--js分页和模板插件--%>
+<script src="${ctx}/js/lib/jquery.easyui.min.js"></script>
+<script src="${ctx}/js/lib/jsrender.min.js"></script>
+<script src="${ctx}/js/lib/jsrender-converts.js"></script>
+<script src="${ctx}/js/lib/mricode.pagination.js"></script>
+<script id="takeout" type="text/x-jrender">
+                <div class="movBox clearfix p20 bgc-f9">
+                <div>
+                    <div>
+                        <span class="f14 color-red">未送餐订单：{{:orderCount}}单<i class="newicon ml12" style="margin-top:-40px;margin-left:-30px;"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="f14">已送餐订单： {{:overOrderCount}}单</span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="f14">已退餐订单： {{:refundOrderCount}}单</span>
+                    </div>
+                </div>
+            </div>
+</script>
+<!--商品详细信息-->
+<script id="sellerInfo" type="text/x-jrender">
+   {{if #parent.data.length==1}}
+                            <div>
+                                    <p>{{: sellName }}</p>
+                                    <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+                            </div>
+    {{else #index+1 < #parent.data.length}}
+            <div class="has-bb  mt8">
+                <p>{{: sellName }}</p>
+                <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+            </div>
+     {{else}}
+              <div>
+                    <p>{{: sellName }}</p>
+                    <p>售价：{{formatDecimal: sellDiscountPrice/100}}元*{{: count}}</p>
+                </div>
+   {{/if}}
+</script>
+<%--影票信息--%>
+<script id="ticketInfo" type="text/x-jrender">
+      <div>
+            <p class="mb7">{{: filmName}}<i class="typeD ml5">{{: filmSight}}</i></p>
+            <p class="mb7">{{: cinemaName}}
+
+           {{: hallName}}</p>
+            <p>场次：{{: showStartTime}}</p>
+        </div>
+
+</script>
+<script id="realPayInfo" type="text/x-jrender">
+     <div>
+                                    <p class="color-red mb10">{{formatDecimal: (orderTotalPayAmount ? orderTotalPayAmount :0)/100}}</p>
+                                    {{if payChannel}}
+                                        <p class="orange mb7">{{: payChannel}}</p>
+                                    {{/if}}
+                                    {{if paymentCode}}
+                                           <p class="mb7">流水号：{{: paymentCode}}</p>
+                                    {{/if}}
+    </div>
+</script>
+
+<script id="refundInfo" type="text/x-jrender">
+    <div>
+                                    <p class="mb10 color-red">总金额：{{formatDecimal: (orderSubsidyAmount ? orderSubsidyAmount :0)/100}}元</p>
+                                    {{props subsidy}}
+                                        {{if key="票务促销"}}
+                                            <p class="orange">{{>key}}：{{formatDecimal: prop/100}}</p>
+                                        {{else}}
+                                            <p>{{>key}}：{{formatDecimal: prop/100}}元</p>
+                                        {{/if}}
+                                    {{/props}}
+    </div>
+</script>
+<script id="discountInfo" type="text/x-jrender" >
+         <p class="mb10 color-red">总金额：{{formatDecimal: (orderTotalDiscountAmount ? orderTotalDiscountAmount :0)/100}}元</p>
+                                    {{props discount}}
+                                            <p class="orange">{{>key}}：{{formatDecimal: prop/100}}</p>
+                                    {{/props}}
+</script>
+<script id="sellCodeInfo" type="text/x-jrender" >
+         <div>
+            <p class="mb7" style="margin-left:5px;">取货码：<i>{{:pickupCodeGoods}}</i></p>
+            <input id="showCode" onclick="showCode('{{:pickupCodeGoods}}',{{:cinemaCode}})" type="button" class="gray_btn mt10" value="查看取货码" data-code="{{:pickupCodeGoods}}" data-cinema="{{:cinemaCode}}"/>
+        </div>
+</script>
+
+<script id="sendTimeNew" type="text/x-jrender" >
+            <p class="mb7" style="margin-left:5px;">{{:sendTime}}<div class="newicon"></div></p>
+</script>
+<script id="sendTime" type="text/x-jrender" >
+            <p class="mb7" style="margin-left:5px;">{{:sendTime}}</p>
+</script>
+<script id="sendTimeOld" type="text/x-jrender" >
+            <p class="mb7" style="margin-left:5px;">{{:sendTime}}<div  class="timeicon" style="margin-left:5px;">{{:timeOut}}</div></p>
+</script>
+<script src="${ctx}/js/mod/common.js"></script>
+<script src="${ctx}/js/mod/takeout/takeoutList.js"></script>

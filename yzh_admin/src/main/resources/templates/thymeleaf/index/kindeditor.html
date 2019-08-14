@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" th:src="@{/common/kindeditor/kindeditor-all-min.js}"></script>
+        <script type="text/javascript" th:src="@{/common/kindeditor/lang/zh-CN.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/jquery-1.11.3.min.js}"></script>
+
+        <title></title>
+    </head>
+    <body>
+        <textarea id="txtEditor" name="content1" style="height: 300px;width: 100%;"></textarea>
+        <button type="button" onclick="upload();">上传</button>
+    </body>
+    <script>
+        var callback = "redirect.html";
+        var editor1;
+        var editor = KindEditor.ready(function(K) {
+             editor1 = K.create('textarea[name="content1"]', {
+                cssPath : '../plugins/code/prettify.css',
+                uploadJson : 'http://127.0.0.1:8081/upload/upmethod?callBackPath='+callback,
+                fileManagerJson : '../jsp/file_manager_json.jsp',
+                allowFileManager : true,
+                afterCreate : function() {
+                    var self = this;
+                    K.ctrl(document, 13, function() {
+                        self.sync();
+                        document.forms['example'].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function() {
+                        self.sync();
+                        document.forms['example'].submit();
+                    });
+                }
+            });
+        });
+
+    </script>
+    <script src="upload.js"></script>
+</html>

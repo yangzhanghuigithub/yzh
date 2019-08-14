@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>影核常用工具</title>
+    <div th:replace="commons/common"></div>
+    <Link rel="icon" th:href="@{/image/bottom_logo.jpg}">
+    <script type="text/javascript" th:src="@{/js/vue/vue.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vue/vue-router.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vue/fetch.min.js}"></script>
+    <style type="text/css">
+        * {
+            /*margin: 0 auto;*/
+            text-align: center;
+            line-height: 40px;
+        }
+
+        div {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #grandFather {
+            background: green;
+        }
+
+        #father {
+            background: blue;
+        }
+
+        #me {
+            background: red;
+        }
+
+        #son {
+            background: gray;
+        }
+
+        table tr td {
+            border: 1px solid gray;
+            padding: 10px;
+
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 800px;
+            table-layout: fixed;
+        }
+
+        tr.firstLine {
+            background-color: lightGray;
+        }
+
+        div.product {
+            float: left;
+            border: 1px solid lightGray;
+            width: 200px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+        }
+        a.router-link-active{
+            /*   color:blue; */
+            background-color: lightGray;
+        }
+        div.menu{
+            border:1px solid gray;
+            float:left;
+        }
+        div.menu a{
+            display:block;
+        }
+
+        div.workingRoom{
+            margin-left:100px;
+        }
+
+        div#app{
+            width:500px;
+            padding:10px;
+            margin:10px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    {{gareen.name}}
+</div>
+<div id="div2">
+    <div>一共点击了 {{clickNumber}}次</div>
+    <button @click="count">点击</button>
+</div>
+<div id="content">
+    <div id="grandFather" @click="doc">
+        grandFather
+        <!--.capture-->
+        <!--.self-->
+        <div id="father" @click.once="doc">
+            father
+            <!--.stop-->
+            <div id="me" @click="doc">
+                me
+                <div id="son" @click="doc">
+                    son
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="div3">
+    <a href="http://12306.com" @click="jump">正常的链接 http://12306.com</a>
+    <br>
+    <a href="http://12306.com" @click.prevent="jump">prevent jump()之后的链接 http://12306.com</a>
+    <br>
+    <a href="http://12306.com" @click.prevent>纯prevent之后的链接 http://12306.com</a>
+    <br>
+    <br>
+    <form @submit="jump" action="http://12306.com">
+        <button type="submit">正常的form</button>
+    </form>
+    <form @submit.prevent="jump" action="http://12306.com">
+        <button type="submit">prevent jump()之后的form</button>
+    </form>
+    <form @submit.prevent action="http://12306.com">
+        <button type="submit">纯prevent之后的form</button>
+    </form>
+</div>
+<div id="div4">
+    <button @click="toggle">切换隐藏显示</button>
+    <div v-if="show"> 默认这一条是看得见的</div>
+</div>
+<div id="div5">
+    <table align="center">
+        <tr class="firstLine">
+            <td>name</td>
+            <td>hp</td>
+        </tr>
+        <tr v-for="hero,index in heros">
+            <td>{{index+1}}</td>
+            <td>{{hero.name}}</td>
+            <td>{{hero.hp}}</td>
+        </tr>
+    </table>
+</div>
+<div id="div6">
+    <a :href="page">http://12306.com</a>
+</div>
+<div id="div7">
+    hero name: <input v-model="name">
+    <button @click="doClick">提交数据</button>
+</div>
+<div id="div8">
+    <table align="center">
+        <tr class="firstLine">
+            <td>视图类型</td>
+            <td>输入数据</td>
+            <td>绑定到Vue上的数值</td>
+        </tr>
+        <tr>
+            <td>
+                单行文本
+            </td>
+            <td>
+                <!--.lazy-->
+                <!--.number-->
+                <!--.trim-->
+                <input v-model.number="input" placeholder="输入数据">
+            </td>
+            <td>
+                <p>{{ input }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                多行文本
+            </td>
+            <td>
+                <textarea v-model.trim="textarea" placeholder="输入数据"></textarea>
+            </td>
+            <td>
+                <p>{{ textarea }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单个复选框
+            </td>
+            <td>
+                <input type="checkbox" id="checkbox" v-model="checked">
+            </td>
+            <td>
+                <p>{{ checked }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                多个复选框
+            </td>
+            <td>
+                <input type="checkbox" id="teemo" value="teemo" v-model="checkedes">
+                <label for="teemo">teemo</label>
+                <input type="checkbox" id="gareen" value="gareen" v-model="checkedes">
+                <label for="gareen">gareen</label>
+                <input type="checkbox" id="annie" value="annie" v-model="checkedes">
+                <label for="annie">annie</label>
+            </td>
+            <td>
+                <p>{{ checkedes }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单选按钮
+            </td>
+            <td>
+                <input type="radio" id="one" value="One" v-model="radio">
+                <label for="one">One</label>
+                <br>
+                <input type="radio" id="two" value="Two" v-model="radio">
+                <label for="two">Two</label>
+            </td>
+            <td>
+                <p>{{ radio }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单选选择框
+            </td>
+            <td>
+                <select v-model="selected" size="5">
+                    <option disabled value="">请选择</option>
+                    <option>AD</option>
+                    <option>AC</option>
+                    <option>ADC</option>
+                </select>
+            </td>
+            <td>
+                <p>{{ selected }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                多选选择框
+            </td>
+            <td>
+                (通过ctrl或者shift进行多选)<br>
+                <select v-model="selecteds" multiple size="5">
+                    <option disabled value="">请选择</option>
+                    <option>AD</option>
+                    <option>AC</option>
+                    <option>ADC</option>
+                </select>
+            </td>
+            <td>
+                <p>{{ selecteds }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单个复选框
+            </td>
+            <td>
+                默认值是true或者false,也可以修改为自定义的值<br>
+                <input type="checkbox" id="toggle" true-value="yes" false-value="no" v-model="toggle">
+            </td>
+            <td>
+                <p>{{ toggle }}</p>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<div id="div9">
+    <table align="center">
+        <tr class="firstLine">
+            <td>视图类型</td>
+            <td>输入数据</td>
+            <td>绑定到Vue上的数值</td>
+        </tr>
+        <tr>
+            <td>
+                单行文本1
+            </td>
+            <td>
+                <input v-model.lazy="input1" placeholder="输入数据">
+            </td>
+            <td>
+                <p>{{ input1 }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单行文本2
+            </td>
+            <td>
+                <input v-model.lazy="input2" placeholder="输入数据">
+            </td>
+            <td>
+                <p>{{ input2 }}</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div10">
+    <table align="center">
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                汇率： <input type="number" v-model.number="exchange"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                ￥: <input type="number" v-model.number="rmb"/>
+            </td>
+            <td align="center">
+                <!--dollar-->
+                $: {{ getDollar() }}
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div11">
+    <table align="center">
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                汇率： <input type="number" v-model.number="exchange"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                ￥: <input type="number" v-model.number="rmb"/>
+            </td>
+            <td align="center">
+                $: {{ rmb/exchange }}
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div12">
+    <table align="center">
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                汇率： <input type="number" v-model.number="exchange"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                ￥: <input type="number" v-model.number="rmb"/>
+            </td>
+            <td align="center">
+                $: <input type="number" v-model.number="dollar"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div13">
+    <table align="center">
+        <tr class="firstLine">
+            <td>输入数据</td>
+            <td>过滤后的结果</td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input v-model="data"/>
+            </td>
+            <td align="center">
+                {{ data|capitalize }}
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div14">
+    <table align="center">
+        <tr class="firstLine">
+            <td>输入数据</td>
+            <td>过滤后的结果</td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input v-model="data"/>
+            </td>
+            <td align="center">
+                {{ data|capitalize|capitalizeLastLetter }}
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="div15">
+    <product name="MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮" sale="10"></product>
+    <product name="宾度 男士手包真皮大容量手拿包牛皮个性潮男包手抓包软皮信封包" sale="20"></product>
+    <product name="唯美诺新款男士手包男包真皮大容量小羊皮手拿包信封包软皮夹包潮" sale="30"></product>
+</div>
+<div id="div16">
+    <div v-xart> 好好学习，天天向上</div>
+</div>
+<div id="div17">
+    <div v-xart="{color:'red',text:'best learning video'}"> 好好学习，天天向上</div>
+</div>
+<div id="div18">
+    <div v-xart:hello.a.b="message"> </div>
+</div>
+<div id="app">
+    <div class="menu">
+        <!--
+            router-link 相当于就是超链
+            to 相当于就是 href
+        -->
+        <router-link to="/user">用户管理</router-link>
+        <router-link to="/product">产品管理</router-link>
+        <router-link to="/order">订单管理</router-link>
+    </div>
+    <div class="workingRoom">
+        <!--
+            点击上面的/user,那么/user 对应的内容就会显示在router-view 这里
+         -->
+        <router-view></router-view>
+    </div>
+</div>
+<div id="hero">
+
+</div>
+<script>
+    var url = "/file/json.txt"
+    fetch(url).then(function(response) {
+        response.json().then(function (jsonObject) {
+            var jsonString = JSON.stringify(jsonObject)
+            document.getElementById("hero").innerHTML = "通过fetch获取到的json数据："+ jsonString;
+        })
+    }).catch(function(err){
+        console.log("Fetch错误:"+err);
+    })
+    /*
+    * 申明三个模板( html 片段 )
+    */
+    var user = { template: '<p>用户管理页面的内容</p>' };
+    var second = { template: '<p>产品管理页面的内容</p>' };
+    var order = { template: '<p>订单管理页面的内容</p>' };
+    /*
+    * 定义路由
+    */
+    var routes = [
+        { path: '/', redirect: '/user'}, // 这个表示会默认渲染 /user，没有这个就是空白
+        { path: '/user', component: user },
+        { path: '/product', component: second },
+        { path: '/order', component: order }
+    ];
+    /*
+    * 创建VueRouter实例
+    */
+    var router = new VueRouter({
+        routes:routes
+    });
+    /*
+    * 给vue对象绑定路由
+    */
+    new Vue({
+        el:"#app",
+        router: router
+    })
+    Vue.directive('xart', {
+        bind: function (el, binding, vnode) {
+            var s = JSON.stringify
+            el.innerHTML =
+                'name: '       + s(binding.name) + '<br>' +
+                'value: '      + s(binding.value) + '<br>' +
+                'expression: ' + s(binding.expression) + '<br>' +
+                'argument: '   + s(binding.arg) + '<br>' +
+                'modifiers: '  + s(binding.modifiers) + '<br>' +
+                'vnode keys: ' + Object.keys(vnode).join(', ')
+        },
+        update: function (newValue, oldValue) {
+            // 值更新时的工作
+            // 也会以初始值为参数调用一次
+        },
+        unbind: function () {
+            // 清理工作
+            // 例如，删除 bind() 添加的事件监听器
+        }
+    })
+    new Vue({
+        el: '#div18',
+        data:{
+            message:'hello vue.js'
+        }
+    })
+    Vue.directive('xart', function (el, binding) {
+        el.innerHTML = el.innerHTML + '( ' + binding.value.text + ' )'
+        el.style.color = binding.value.color
+    })
+    new Vue({
+        el: '#div17'
+    })
+    Vue.directive('xart', function (el) {
+        el.innerHTML = el.innerHTML + ' ( x-art ) '
+        el.style.color = 'pink'
+    })
+    new Vue({
+        el: '#div16'
+    })
+    Vue.component('product', {
+        props: ['name', 'sale'],
+        template: '<div class="product" v-on:click="increaseSale">{{name}} 销量: {{sale}} </div>',
+        methods: {
+            increaseSale: function () {
+                this.sale++
+            }
+        }
+    })
+    // Vue.component('product', {
+    //     props:['name'],
+    //     template: '<div class="product" >{{name}}</div>'
+    // })
+    new Vue({
+        el: '#div15'
+    })
+    // Vue.component('product', {
+    //     template: '<div class="product" >MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮</div>'
+    // })
+    // new Vue({
+    //     el: '#div15',
+    //     components:{
+    //         'product':{
+    //             template:'<div class="product" >MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮</div>'
+    //         }
+    //     }
+    // })
+    // Vue.filter('capitalize', function (value) {
+    //     if (!value) return ''
+    //     value = value.toString()
+    //     return value.charAt(0).toUpperCase() + value.slice(1)
+    // })
+    //
+    // Vue.filter('capitalizeLastLetter', function (value) {
+    //     if (!value) return '' //如果为空，则返回空字符串
+    //     value = value.toString()
+    //     return value.substring(0,value.length-1)+ value.charAt(value.length-1).toUpperCase()
+    // })
+    new Vue({
+        el: '#div14',
+        data: {
+            data: ''
+        },
+        filters: {
+            capitalize: function (value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.substring(1)
+            },
+            capitalizeLastLetter: function (value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                value = value.toString()
+                return value.substring(0, value.length - 1) + value.charAt(value.length - 1).toUpperCase()
+            }
+        }
+    })
+    new Vue({
+        el: '#div13',
+        data: {
+            data: ''
+        },
+        filters: {
+            capitalize: function (value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.substring(1)
+            }
+        }
+    })
+    new Vue({
+        el: '#div12',
+        data: {
+            exchange: 6.4,
+            rmb: 0,
+            dollar: 0
+        },
+        watch: {
+            rmb: function (val) {
+                this.rmb = val;
+                this.dollar = this.rmb / this.exchange;
+            },
+            dollar: function (val) {
+                this.dollar = val;
+                this.rmb = this.dollar * this.exchange;
+            },
+        }
+
+    })
+    new Vue({
+        el: '#div11',
+        data: {
+            exchange: 6.4,
+            rmb: 0
+        }
+    })
+    new Vue({
+        el: '#div10',
+        data: {
+            exchange: 6.4,
+            rmb: 0
+        },
+        // computed:{
+        //     dollar:function() {
+        //         return this.rmb / this.exchange;
+        //     }
+        // }
+        methods: {
+            getDollar: function () {
+                return this.rmb / this.exchange;
+            }
+        }
+    })
+    new Vue({
+        el: '#div9',
+        data: {
+            input1: '',
+            input2: ''
+        }
+    })
+    new Vue({
+        el: '#div8',
+        data: {
+            input: '',
+            textarea: '',
+            checked: '',
+            checkedes: [],
+            radio: '',
+            selected: '',
+            selecteds: [],
+            toggle: '',
+
+        }
+    })
+    new Vue({
+        el: '#div7',
+        data: {
+            name: "teemo"
+        },
+        methods: {
+            doClick: function () {
+                alert(this.name);
+            }
+        }
+    })
+    new Vue({
+        el: '#div6',
+        data: {
+            page: 'http://12306.com'
+        }
+    })
+    var data = [
+        {name: "盖伦", hp: 341},
+        {name: "提莫", hp: 225},
+        {name: "安妮", hp: 427},
+        {name: "死歌", hp: 893}
+    ];
+    new Vue({
+        el: '#div5',
+        data: {
+            heros: data
+        }
+    })
+    new Vue({
+        el: '#div4',
+        data: {
+            show: true
+        },
+        methods: {
+            toggle: function () {
+                this.show = !this.show;
+            }
+        }
+    })
+    //准备数据
+    var gareen = {"name": "盖伦", "hp": 616};
+    //通过vue.js 把数据和对应的视图关联起来
+    new Vue({
+        el: '#div1',
+        data: {
+            message: gareen
+        }
+    })
+    new Vue({
+        el: '#div2',
+        data: {
+            clickNumber: 0
+        },
+        methods: {
+            count: function () {
+                this.clickNumber++;
+            }
+        }
+    })
+    var content = new Vue({
+        el: "#content",
+        data: {
+            id: ''
+        },
+        methods: {
+            doc: function () {
+                this.id = event.currentTarget.id;
+                alert(this.id)
+            }
+        }
+    })
+    new Vue({
+        el: '#div3',
+        data: {},
+        methods: {
+            jump: function () {
+                alert("jump()函数被调用");
+            }
+        }
+    })
+</script>
+</body>
+</html>
