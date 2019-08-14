@@ -24,6 +24,7 @@
         <guava.version>18.0</guava.version>
         <org.httpcomponents-version>4.5.2</org.httpcomponents-version>
         <javax.mail.version>1.4.4</javax.mail.version>
+        <spring.data.elasticsearch.version>7.2.1</spring.data.elasticsearch.version>
 
         <commons-collections.version>3.2.1</commons-collections.version>
         <commons-lang.version>2.6</commons-lang.version>
@@ -61,11 +62,6 @@
         <groupId>com.fasterxml.jackson.module</groupId>
         <artifactId>jackson-module-jaxb-annotations</artifactId>
         <version>${com.fasterxml.jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${org.json.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -237,6 +233,31 @@
             <artifactId>spring-boot-starter-cache</artifactId>
             <version>${springboot.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
+            <!--<version>${springboot.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>transport</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-client</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.plugin</groupId>-->
+            <!--<artifactId>transport-netty4-client</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>io.github.lvyahui8</groupId>
             <artifactId>spring-boot-data-aggregator-starter</artifactId>

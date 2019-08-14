@@ -24,10 +24,5 @@
             <artifactId>yzh_entity</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.learn.yzh</groupId>
-            <artifactId>yzh_common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

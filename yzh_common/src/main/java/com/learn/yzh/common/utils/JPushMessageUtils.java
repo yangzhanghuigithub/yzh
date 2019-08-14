@@ -1,40 +1,9 @@
 package com.learn.yzh.common.utils;
 
-import com.google.common.collect.Maps;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.TypeReference;
-import com.learn.yzh.common.constants.SysDictConstants;
-import com.learn.yzh.common.model.Member;
-import com.learn.yzh.common.model.MovieCompany;
-import com.thoughtworks.xstream.core.util.Base64Encoder;
-
-import org.apache.commons.lang3.*;
-import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;
 import cn.jiguang.common.resp.DefaultResult;
 import cn.jpush.api.JPushClient;
-import cn.jpush.api.push.model.Message;
 import cn.jpush.api.push.model.Options;
 import cn.jpush.api.push.model.Platform;
 import cn.jpush.api.push.model.PushPayload;
@@ -43,6 +12,18 @@ import cn.jpush.api.push.model.audience.AudienceTarget;
 import cn.jpush.api.push.model.notification.IosAlert;
 import cn.jpush.api.push.model.notification.IosNotification;
 import cn.jpush.api.push.model.notification.Notification;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.TypeReference;
+import com.learn.yzh.common.model.Member;
+import com.learn.yzh.common.model.MovieCompany;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 向用户端发送消息或通知

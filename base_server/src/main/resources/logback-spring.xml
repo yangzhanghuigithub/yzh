@@ -11,19 +11,43 @@
         </appender>
 
         <!-- 项目日志 -->
-        <logger name="com.ingcore" level="DEBUG"  />
+        <logger name="com.learn.yzh" level="DEBUG"  />
         <!-- 打印sql  -->
         <logger name="java.sql.PreparedStatement" level="DEBUG" />
         <logger name="java.sql.ResultSet" level="DEBUG" />
 
-        <!--<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-        <!--<destination>10.66.177.66:4560</destination>-->
-        <!--<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />-->
-        <!--</appender>-->
+        <appender name="LOGSTASH"
+                  class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>192.168.0.123:5044</destination>
+            <!-- 日志输出编码 -->
+            <encoder
+                    class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <providers>
+                    <timestamp>
+                        <timeZone>UTC</timeZone>
+                    </timestamp>
+                    <pattern>
+                        <pattern>
+                            {
+                            "severity": "%level",
+                            "service": "${springAppName:-}",
+                            "trace": "%X{X-B3-TraceId:-}",
+                            "span": "%X{X-B3-SpanId:-}",
+                            "exportable": "%X{X-Span-Export:-}",
+                            "pid": "${PID:-}",
+                            "thread": "%thread",
+                            "class": "%logger{40}",
+                            "rest": "%message"
+                            }
+                        </pattern>
+                    </pattern>
+                </providers>
+            </encoder>
+        </appender>
 
         <!-- 其他日志默认info级别 -->
         <root level="INFO" additivity="false">
-            <!--<appender-ref ref="LOGSTASH" />-->
+            <appender-ref ref="LOGSTASH" />
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
@@ -103,7 +127,7 @@
 
         <!-- 连接生产环境调试时，修改下面两个日志级别即可 -->
         <!-- 项目日志 -->
-        <logger name="com.ingcore" level="INFO" additivity="false">
+        <logger name="com.learn.yzh" level="INFO" additivity="false">
             <appender-ref ref="logfile" />
         </logger>
         <!-- 其他日志默认error级别 -->

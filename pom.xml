@@ -32,6 +32,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    <spring-cloud-version>2.1.2.RELEASE</spring-cloud-version>
   </properties>
 
   <dependencies>
@@ -44,23 +45,23 @@
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-web</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-test</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
           <scope>test</scope>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-openfeign</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>com.netflix.feign</groupId>
@@ -95,12 +96,12 @@
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-config</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.boot</groupId>
@@ -110,17 +111,22 @@
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-security</artifactId>
-          <version>2.1.2.RELEASE</version>
+          <version>${spring-cloud-version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-sleuth</artifactId>
+          <version>${spring-cloud-version}</version>
       </dependency>
       <dependency>
           <groupId>de.codecentric</groupId>

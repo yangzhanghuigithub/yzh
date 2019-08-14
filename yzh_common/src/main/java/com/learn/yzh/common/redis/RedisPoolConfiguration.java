@@ -20,7 +20,7 @@ import redis.clients.jedis.JedisPoolConfig;
 @Configuration
 //@PropertySource(value = "{classpath:/redis.properties, classpath:/application.properties}")
 @EnableCaching
-public class RedisCacheConfiguration extends CachingConfigurerSupport {
+public class RedisPoolConfiguration extends CachingConfigurerSupport {
 
     @Value("${spring.redis.host}")
     private String host;
@@ -31,12 +31,12 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
     @Value("${spring.redis.port}")
     private int port;
 
-    private int timeout = 30000;
+    private int timeout = 3000;
 
     @Value("${spring.redis.jedis.pool.max-idle}")
     private int maxIdle;
 
-    private long maxWaitMillis = 1000;
+    private long maxWaitMillis = 30000;
 
     @Value("${spring.redis.password}")
     private String password;
