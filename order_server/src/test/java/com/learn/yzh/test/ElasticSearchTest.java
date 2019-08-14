@@ -1,58 +1,82 @@
 package com.learn.yzh.test;
+
 import com.learn.yzh.TestConfig;
-import com.learn.yzh.entity.Employee;
-import com.learn.yzh.utils.elasticsearch.EmployService;
+import com.learn.yzh.entity.Commodity;
+import com.learn.yzh.utils.elasticsearch.CommodityService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * @program: yzh->ElasticSearchTest
  * @description: ElasticSearchTest
  * @author: yangzhanghui
- * @create: 2019-08-13 19:58
+ * @create: 2019-08-14 19:35
  **/
-
 public class ElasticSearchTest extends TestConfig {
 
     @Autowired
-    private EmployService employeeService;
+    private CommodityService commodityService;
 
     @Test
-    public void createIndex() {
+    public void contextLoads() {
+        System.out.println(commodityService.count());
+    }
 
-        //1. 给ES中索引(保存)一个文档
-        Employee emp = new Employee();
-        emp.setId("sssss");
-        emp.setName("1111");
-//        emp.setGender("111");
-//        emp.setBirthday(LocalDate.now());
-//        emp.setIdCard("111");
-//        emp.setWedlock("1111");
-//        emp.setNationId(0);
-//        emp.setNativePlace("11111");
-//        emp.setPoliticId(0);
-//        emp.setEmail("111");
-//        emp.setPhone("1111");
-//        emp.setAddress("11111");
-//        emp.setDepartmentId(0);
-//        emp.setJobLevelId(0);
-//        emp.setPosId(0);
-//        emp.setEngageForm("111");
-//        emp.setTiptopDegree("1111");
-//        emp.setSpecialty("1111");
-//        emp.setSchool("1111");
-//        emp.setBeginDate(LocalDate.now());
-//        emp.setWorkState("1111");
-//        emp.setWorkID("11111");
-//        emp.setContractTerm(0.0D);
-//        emp.setConversionTime(LocalDate.now());
-//        emp.setNotWorkDate(LocalDate.now());
-//        emp.setBeginContract(LocalDate.now());
-//        emp.setEndContract(LocalDate.now());
-//        emp.setWorkAge(0);
+    @Test
+    public void testInsert() {
+        Commodity commodity = new Commodity();
+        commodity.setSkuId("1501009001");
+        commodity.setName("原味切片面包（10片装）");
+        commodity.setCategory("101");
+        commodity.setPrice(880);
+        commodity.setBrand("良品铺子");
+        commodityService.save(commodity);
 
-        Employee save = employeeService.save(emp);
-        System.out.println(save.toString());
+        commodity = new Commodity();
+        commodity.setSkuId("1501009002");
+        commodity.setName("原味切片面包（6片装）");
+        commodity.setCategory("101");
+        commodity.setPrice(680);
+        commodity.setBrand("良品铺子");
+        commodityService.save(commodity);
 
+        commodity = new Commodity();
+        commodity.setSkuId("1501009004");
+        commodity.setName("元气吐司850g");
+        commodity.setCategory("101");
+        commodity.setPrice(120);
+        commodity.setBrand("百草味");
+        commodityService.save(commodity);
+
+    }
+
+    @Test
+    public void testDelete() {
+        Commodity commodity = new Commodity();
+        commodity.setSkuId("1501009002");
+        commodityService.delete(commodity);
+    }
+
+    @Test
+    public void testGetAll() {
+        Iterable<Commodity> iterable = commodityService.getAll();
+        iterable.forEach(e->System.out.println(e.toString()));
+    }
+
+    @Test
+    public void testGetByName() {
+        List<Commodity> list = commodityService.getByName("面包");
+        System.out.println(list);
+    }
+
+    @Test
+    public void testPage() {
+        Page<Commodity> page = commodityService.pageQuery(0, 10, "切片");
+        System.out.println(page.getTotalPages());
+        System.out.println(page.getNumber());
+        System.out.println(page.getContent());
     }
 }
