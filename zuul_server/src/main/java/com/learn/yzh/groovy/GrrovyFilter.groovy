@@ -10,7 +10,7 @@ class GrrovyFilter extends ZuulFilter{
 
     @Override
     String filterType() {
-        return PRE_TYPE;
+        return "pre";
     }
 
     @Override

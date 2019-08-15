@@ -1,6 +1,7 @@
 package com.learn.yzh.config;
 
 import feign.Contract;
+import feign.auth.BasicAuthRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,4 +13,8 @@ public class FeignConfig {
         return new Contract.Default();
     }
 
+    @Bean
+    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+        return new BasicAuthRequestInterceptor("yzh", "yzh");
+    }
 }
