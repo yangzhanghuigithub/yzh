@@ -259,8 +259,14 @@ public class Redis implements IRedis {
     }
 
 
-
-
+    /**
+     * Redis Srem 命令用于移除集合中的一个或多个成员元素，不存在的成员元素会被忽略。
+     * 当 key 不是集合类型，返回一个错误。
+     * @param key
+     * @param member
+     * @param <T>
+     * @return
+     */
     @Override
     public <T> long srem(final String key, final T member) {
         return execute(new IExecutor<Long>() {
@@ -287,6 +293,37 @@ public class Redis implements IRedis {
             @Override
             public Long run(Jedis jedis) {
                 return jedis.sadd(key, members);
+            }
+        }, key);
+    }
+
+    @Override
+    public <T> Set<T> sdiff(final Class<T> clazz, final String... key) {
+        return execute(new IExecutor<Set<T>>() {
+            @Override
+            public Set<T> run(Jedis jedis) {
+                return typeConvert.toSet(jedis.sdiff(key), clazz);
+            }
+        }, key);
+    }
+
+
+    @Override
+    public <T> Set<T> sunion(final Class<T> clazz, final String... key) {
+        return execute(new IExecutor<Set<T>>() {
+            @Override
+            public Set<T> run(Jedis jedis) {
+                return typeConvert.toSet(jedis.sunion(key), clazz);
+            }
+        }, key);
+    }
+
+    @Override
+    public long sunionStore(String key, String... keys) {
+        return execute(new IExecutor<Long>() {
+            @Override
+            public Long run(Jedis jedis) {
+                return jedis.sunionstore(key, keys);
             }
         }, key);
     }
@@ -819,6 +856,30 @@ public class Redis implements IRedis {
         }, key);
     }
 
+    @Override
+    public RedisLock getLock(final String key){
+        return new RedisLock() {
+            private String lockKey = key;
+            private String lockVal = UUID.randomUUID().toString();
+
+            @Override
+            public boolean lock() {
+                Jedis jedis = getJedis();
+                String l = jedis.set(lockKey, lockVal, "NX", "PX", 60 * 1000L);
+                jedis.close();
+                return "OK".equals(l);
+            }
+
+            @Override
+            public void unlock() {
+                Jedis jedis = getJedis();
+                String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+                jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(lockVal));
+                jedis.close();
+            }
+        };
+    }
+
     protected <T> Set<Zuple<T>> toTuples(Set<Tuple> tuples, Class<T> clazz) {
         if (tuples == null) return Collections.emptySet();
         Set<Zuple<T>> zuples = new LinkedHashSet<Zuple<T>>(tuples.size());
@@ -878,6 +939,30 @@ public class Redis implements IRedis {
                 return jedis.hsetnx(key,filed,value);
             }
         },key);
+    }
+
+    @Override
+    public RedisLock getLock(String key, int lockTime) {
+        return new RedisLock() {
+            private String lockKey = key;
+            private String lockVal = UUID.randomUUID().toString();
+            private int lockSeconds=lockTime;
+            @Override
+            public boolean lock() {
+                Jedis jedis = getJedis();
+                String l = jedis.set(lockKey, lockVal, "NX", "PX", lockTime * 1000L);
+                jedis.close();
+                return "OK".equals(l);
+            }
+
+            @Override
+            public void unlock() {
+                Jedis jedis = getJedis();
+                String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+                jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(lockVal));
+                jedis.close();
+            }
+        };
     }
 }
 

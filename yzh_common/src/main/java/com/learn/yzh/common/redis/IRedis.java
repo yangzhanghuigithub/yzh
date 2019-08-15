@@ -106,6 +106,12 @@ public interface IRedis {
 
 	long sadds(String key, String[] members);
 
+	<T> Set<T> sdiff(Class<T> clazz, String... key);
+
+	<T> Set<T> sunion(Class<T> clazz, String... key);
+
+	long sunionStore(String key, String... keys);
+
 	<T> Set<T> smembers(String key, Class<T> clazz);
 	<T> boolean sisMember(String key, T member);
 	long scard(String key);
@@ -137,32 +143,49 @@ public interface IRedis {
 
 	long zcard(String key);
 	<T> Number zincrby(String key, Number increment, T member);
-	
+
 	<T> long zrank(String key, T member);
 	<T> long zrevrank(String key, T member);
-	
+
 	<T> Number zscore(String key, T member);
 	long zcount(String key, Number min, Number max);
-	
+
 	<T> Set<T> zrange(String key, long start, long size, Class<T> clazz);
 	<T> Set<T> zrange(String key, int start, int end, Class<T> clazz);
 	<T> Set<Zuple<T>> zrangeWithScores(String key, long start, long size, Class<T> clazz);
-	
+
 	<T> Set<T> zrevrange(String key, long start, long size, Class<T> clazz);
 	<T> Set<Zuple<T>> zrevrangeWithScores(String key, long start, long size, Class<T> clazz);
-	
+
 	<T> Set<T> zrangeByScore(String key, Number min, Number max, Class<T> clazz);
 	<T> Set<Zuple<T>> zrangeByScoreWithScores(String key, Number min, Number max, Class<T> clazz);
-	
+
 	<T> Set<T> zrevrangeByScore(String key, Number min, Number max, Class<T> clazz);
 	<T> Set<Zuple<T>> zrevrangeByScoreWithScores(String key, Number min, Number max, Class<T> clazz);
-	
+
 	long zunionStore(String newKey, String... keys);
 	long zinterStore(String newKey, String... keys);
 
-	
+
 	Jedis getJedis();
 
 
 	Set<String> hkeys(String cacheName);
+
+	/**
+	 * @author yuands
+	 * @date 2019/5/7
+	 * @desc 获取一个锁对象，调用 lock() 和 unlock() 可以限定指定代码块根据key只执行一次
+	 * @param key
+	 * @return redis锁对象
+	 */
+	RedisLock getLock(String key);
+
+	/**
+	 * @desc 获取一个锁对象，调用 lock() 和 unlock() 可以限定指定代码块根据key只执行一次
+	 * @param key  锁定的key
+	 * @param lockTime 锁定的时间(秒)
+	 * @return
+	 */
+	public RedisLock getLock(String key, int lockTime);
 }

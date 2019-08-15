@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  * @since 2019-03-06
  */
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/base")
 public class RoleController {
 
     private final Logger logger = Logger.getLogger(RoleController.class);

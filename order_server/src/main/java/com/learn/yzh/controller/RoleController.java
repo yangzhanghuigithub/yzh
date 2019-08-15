@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-03-06
  */
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/order")
 public class RoleController {
 
     private final Logger logger = Logger.getLogger(RoleController.class);

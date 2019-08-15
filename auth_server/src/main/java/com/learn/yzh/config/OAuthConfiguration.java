@@ -27,9 +27,9 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("zuul-server").secret("yzh").scopes("WRIGTH", "read").
+        clients.inMemory().withClient("zuul-server").secret("secret").scopes("WRIGTH", "read").
                 autoApprove(true).authorities("WRIGTH_READ", "WRIGTH_WRITE").
-                authorizedGrantTypes("implicat", "refresh_token", "password", "authorization_code");
+                authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code");
     }
 
     @Override
