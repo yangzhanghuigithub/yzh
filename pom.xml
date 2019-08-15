@@ -19,6 +19,7 @@
       <module>zuul_server</module>
       <module>admin_server</module>
       <module>yzh_admin</module>
+      <module>auth_server</module>
   </modules>
 
   <parent>

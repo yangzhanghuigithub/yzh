@@ -11,6 +11,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.discovery.PatternServiceRouteMapper;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -26,9 +28,17 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @EnableCircuitBreaker // 启动断路器，如果要监控hystrix的流必须开启此注解
 @EnableHystrixDashboard // 开启dashboard，通过图形化的方式监控: 查看 http://127.0.0.1:12082/hystrix.stream
-public class ZuulApp {
+public class ZuulApp extends WebSecurityConfigurerAdapter {
+
     public static void main(String[] args) {
         SpringApplication.run(ZuulApp.class, args);
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().
+                antMatchers("/login","/client/**").
+                permitAll().anyRequest().authenticated().and().csrf().disable();
     }
 
     @Bean
