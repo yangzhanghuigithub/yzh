@@ -26,9 +26,9 @@ public class MybatisPlusGenerator {
     //基本包名
     private static String basePackage = "com.learn.yzh";
     //作者
-    private static String authorName = "yj";
+    private static String authorName = "yzh";
     //要生成的表名
-    private static String[] tables = {"adjustsalary","appraise","department","employee","employeeec","employeeremove","employeetrain","empsalary","hr","hr_role","joblevel","menu","menu_role","msgcontent","nation","oplog","politicsstatus","position","role","salary","sysmsg"};
+    private static String[] tables = {"permission","role","role_permission","user","user_role"};
     //table前缀
     private static String prefix = "";
 
@@ -36,7 +36,7 @@ public class MybatisPlusGenerator {
     private static DbType dbType = DbType.MYSQL;
     //数据库配置四要素
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/yj?serverTimezone=GMT%2B8&useEncoding=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false";
+    private static String url = "jdbc:mysql://localhost:3306/yzh?serverTimezone=GMT%2B8&useEncoding=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false";
     private static String username = "root";
     private static String password = "root";
 

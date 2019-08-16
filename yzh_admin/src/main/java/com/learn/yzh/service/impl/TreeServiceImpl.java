@@ -26,7 +26,6 @@ public class TreeServiceImpl extends ServiceImpl<TreeMapper, Tree> implements Tr
 
     @Override
     public List<Tree> getAllTree() {
-        List<Tree> trees = treeMapper.selectByMap(new HashMap<>());
-        return trees;
+        return treeMapper.selectByMap(new HashMap<>());
     }
 }

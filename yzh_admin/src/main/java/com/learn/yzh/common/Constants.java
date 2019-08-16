@@ -1,4 +1,4 @@
-package com.learn.yzh.service;
+package com.learn.yzh.common;
 
 /**
  * 常量集

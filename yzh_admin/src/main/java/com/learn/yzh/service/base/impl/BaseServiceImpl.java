@@ -25,4 +25,6 @@ public  abstract class BaseServiceImpl<T, PK extends Serializable> implements Ba
         String resultData = HttpClientUtils.sendPostRequest(url, params);
         return resultData;
     }
+    
+   
 }

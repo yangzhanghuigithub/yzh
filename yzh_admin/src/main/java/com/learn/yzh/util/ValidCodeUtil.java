@@ -2,6 +2,7 @@ package com.learn.yzh.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.shiro.SecurityUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,14 @@ public class ValidCodeUtil {
 
 	private int w = 70;
 	private int h = 26;
+
+	public static boolean validate(HttpServletRequest request,
+			String validateCode) {
+		String code = (String) SecurityUtils.getSubject().getSession().getAttribute(VALIDATE_CODE);
+		return validateCode.toUpperCase().equals(code);
+	}
+
+
 
 	public void createImage(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
@@ -64,6 +73,7 @@ public class ValidCodeUtil {
 		 * 生成字符
 		 */
 		String s = createCharacter(g);
+		SecurityUtils.getSubject().getSession().setAttribute(VALIDATE_CODE, s);
 
 		g.dispose();
 		OutputStream out = response.getOutputStream();

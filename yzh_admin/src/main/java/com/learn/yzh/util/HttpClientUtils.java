@@ -1,6 +1,6 @@
 package com.learn.yzh.util;
 
-import com.learn.yzh.service.Constants;
+import com.learn.yzh.common.Constants;
 import com.learn.yzh.common.UrlConstants;
 import com.learn.yzh.common.mapper.JsonMapper;
 import org.apache.http.*;
@@ -70,7 +70,7 @@ public class HttpClientUtils {
      *  httpClient 配置
      * @return  httpclient
      */
-    public static  synchronized CloseableHttpClient getHttpClient(){
+    public static  synchronized  CloseableHttpClient getHttpClient(){
             if(httpClient==null) {
                 ConnectionSocketFactory plainsf = PlainConnectionSocketFactory.getSocketFactory();
                 LayeredConnectionSocketFactory sslsf = createSSLConnSocketFactory();
