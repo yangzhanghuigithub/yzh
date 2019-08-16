@@ -36,7 +36,7 @@ public class MybatisPlusGenerator {
     private static DbType dbType = DbType.MYSQL;
     //数据库配置四要素
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/yzh?serverTimezone=GMT%2B8&useEncoding=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false";
+    private static String url = "jdbc:mysql://localhost:3306/yzh?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&useSSL=false";
     private static String username = "root";
     private static String password = "root";
 
