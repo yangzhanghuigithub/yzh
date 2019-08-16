@@ -1,6 +1,6 @@
-package com.learn.yzh.entity;
+package com.learn.yzh.entity.base;
 
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -16,26 +16,23 @@ import java.io.Serializable;
  * </p>
  *
  * @author yzh
- * @since 2019-03-06
+ * @since 2019-08-16
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("tp_role_permission")
-public class RolePermission extends Model<RolePermission> {
+@TableName("userr")
+public class Userr extends Model<Userr> {
 
-    private static final long serialVersionUID = 1L;
-    @TableId
-    private String id;
+    private static final long serialVersionUID=1L;
 
-    private String roleId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-    private String permissionId;
+    private String username;
 
-    @TableField(exist = false)
-    private String url;
-    @TableField(exist = false)
-    private String roleName;
+    private String password;
+
 
     @Override
     protected Serializable pkVal() {

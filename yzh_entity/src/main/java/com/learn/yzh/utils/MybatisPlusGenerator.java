@@ -28,7 +28,7 @@ public class MybatisPlusGenerator {
     //作者
     private static String authorName = "yzh";
     //要生成的表名
-    private static String[] tables = {"permission","role","role_permission","user","user_role"};
+    private static String[] tables = {"permission","role","role_permission","userr","user_roles"};
     //table前缀
     private static String prefix = "";
 
@@ -79,7 +79,7 @@ public class MybatisPlusGenerator {
          * 全局配置
          */
         gen.setGlobalConfig(new GlobalConfig()
-                .setOutputDir( canonicalPath + "/yj_entity/src/main/java")//输出目录
+                .setOutputDir( canonicalPath + "/yzh_entity/src/main/java")//输出目录
                 .setFileOverride(true)// 是否覆盖文件
                 .setActiveRecord(true)// 开启 activeRecord 模式
                 .setEnableCache(false)// XML 二级缓存
@@ -141,12 +141,12 @@ public class MybatisPlusGenerator {
         gen.setPackageInfo(new PackageConfig()
                 //.setModuleName("User")
                 .setParent(basePackage)// 自定义包路径
-                .setController("controller")// 这里是控制器包名，默认 web
-                .setEntity("entity") // 设置Entity包名，默认entity
-                .setMapper("mapper") // 设置Mapper包名，默认mapper
-                .setService("service") // 设置Service包名，默认service
-                .setServiceImpl("service.impl") // 设置Service Impl包名，默认service.impl
-                .setXml("mapper") // 设置Mapper XML包名，默认mapper.xml
+                .setController("controller/base")// 这里是控制器包名，默认 web
+                .setEntity("entity/base") // 设置Entity包名，默认entity
+                .setMapper("mapper/base") // 设置Mapper包名，默认mapper
+                .setService("service/base") // 设置Service包名，默认service
+                .setServiceImpl("service.impl/base") // 设置Service Impl包名，默认service.impl
+                .setXml("mapper/base") // 设置Mapper XML包名，默认mapper.xml
         );
 
         /**
@@ -166,7 +166,7 @@ public class MybatisPlusGenerator {
         fileOutList.add(new FileOutConfig("/templates/mybatisplus/mapper.xml.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return canonicalPath + "/yj_entity/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return canonicalPath + "/yzh_entity/src/main/resources/mapper/base" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
         abc.setFileOutConfigList(fileOutList);

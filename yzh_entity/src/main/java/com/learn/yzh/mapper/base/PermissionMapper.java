@@ -1,7 +1,7 @@
 package com.learn.yzh.mapper.base;
 
-import com.learn.yzh.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.learn.yzh.entity.base.Permission;
 
 /**
  * <p>

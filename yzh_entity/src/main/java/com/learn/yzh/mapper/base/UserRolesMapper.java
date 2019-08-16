@@ -1,7 +1,7 @@
 package com.learn.yzh.mapper.base;
 
-import com.learn.yzh.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.learn.yzh.entity.base.UserRoles;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author yzh
  * @since 2019-08-16
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserRolesMapper extends BaseMapper<UserRoles> {
 
 }

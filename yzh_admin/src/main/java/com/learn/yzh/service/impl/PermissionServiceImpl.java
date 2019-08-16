@@ -1,8 +1,8 @@
 package com.learn.yzh.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.learn.yzh.entity.Permission;
-import com.learn.yzh.mapper.PermissionMapper;
+import com.learn.yzh.entity.base.Permission;
+import com.learn.yzh.mapper.base.PermissionMapper;
 import com.learn.yzh.service.PermissionService;
 import org.springframework.stereotype.Service;
 

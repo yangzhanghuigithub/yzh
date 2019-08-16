@@ -1,9 +1,9 @@
 package com.learn.yzh.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.learn.yzh.entity.Permission;
 import com.learn.yzh.entity.Role;
 import com.learn.yzh.entity.User;
+import com.learn.yzh.entity.base.Permission;
 import com.learn.yzh.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -37,7 +37,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             simpleAuthorizationInfo.addRole(role.getRoleName());
             for (Permission permission:role.getPermissions()) {
                 //添加权限
-                simpleAuthorizationInfo.addStringPermission(permission.getPermissionName());
+                simpleAuthorizationInfo.addStringPermission(permission.getName());
             }
         }
         return simpleAuthorizationInfo;

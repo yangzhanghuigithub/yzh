@@ -1,6 +1,6 @@
 package com.learn.yzh.mapper.base;
 
-import com.learn.yzh.entity.Role;
+import com.learn.yzh.entity.base.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
