@@ -41,6 +41,7 @@ public class ZuulApp extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/**").permitAll().and().logout().permitAll();//配置不需要登录验证路径
         http.authorizeRequests().
                 antMatchers("/login","/order/**").
                 permitAll().anyRequest().authenticated().and().csrf().disable();

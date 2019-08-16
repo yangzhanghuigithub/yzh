@@ -3,6 +3,7 @@ package com.learn.yzh.service;
 import com.learn.yzh.config.FeignConfig;
 import com.learn.yzh.entity.Role;
 import com.learn.yzh.service.impl.RoleServiceImpl;
+import feign.Headers;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -15,7 +16,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @since 2019-03-06
  */
 @FeignClient(value = "order-server", configuration = FeignConfig.class, fallback = RoleServiceImpl.class)
-//@Headers({"Content-Type: application/json","Accept: application/json"})
+@Headers({"Content-Type: application/json","Accept: application/json"})
 public interface RoleService{
 
     @RequestLine("POST /order/testFeign")
