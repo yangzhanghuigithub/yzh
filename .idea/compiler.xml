@@ -12,6 +12,7 @@
         <module name="config_server" />
         <module name="eureka_server" />
         <module name="order_server" />
+        <module name="secu_server" />
         <module name="turbin_server" />
         <module name="yzh_admin" />
         <module name="yzh_common" />

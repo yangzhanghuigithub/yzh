@@ -1,9 +1,9 @@
 package com.learn.yzh.service.impl;
 
-import com.learn.yzh.entity.Role;
-import com.learn.yzh.mapper.RoleMapper;
-import com.learn.yzh.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.learn.yzh.entity.base.Role;
+import com.learn.yzh.mapper.base.RoleMapper;
+import com.learn.yzh.service.RoleService;
 import org.springframework.stereotype.Service;
 
 /**

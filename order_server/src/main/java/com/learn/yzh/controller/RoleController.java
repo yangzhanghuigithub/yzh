@@ -1,7 +1,7 @@
 package com.learn.yzh.controller;
 
 
-import com.learn.yzh.entity.Role;
+import com.learn.yzh.entity.base.Role;
 import com.learn.yzh.service.RoleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

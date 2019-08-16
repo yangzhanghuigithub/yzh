@@ -1,7 +1,7 @@
 package com.learn.yzh.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.learn.yzh.entity.Role;
+import com.learn.yzh.entity.base.Role;
 
 /**
  * <p>

@@ -15,8 +15,8 @@ public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
+        http.csrf().disable();
         http.authorizeRequests().antMatchers("/**").permitAll().and().logout().permitAll();//配置不需要登录验证路径
         http.headers().frameOptions().disable();
-        http.csrf().disable();
     }
 }
