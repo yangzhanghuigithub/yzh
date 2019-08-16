@@ -1,6 +1,5 @@
 package com.learn.yzh.controller;
 
-import com.learn.yzh.entity.Role;
 import com.learn.yzh.service.RoleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,10 @@ public class RoleController {
 
     @RequestMapping(value = "/testFeign", method = RequestMethod.GET)
     public String test(){
-//        return roleService.testFeign().toString();
         logger.info("===<call base-server===>");
-        Role forObject = restTemplate.getForObject("http://base-server/role/testFeign", Role.class, "");
-        return forObject.toString();
+        return roleService.testFeign().toString();
+//        Role forObject = restTemplate.getForObject("http://base-server/role/testFeign", Role.class, "");
+//        return forObject.toString();
     }
 }
 

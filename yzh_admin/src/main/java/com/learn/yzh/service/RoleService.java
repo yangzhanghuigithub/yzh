@@ -18,6 +18,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 @Headers({"Content-Type: application/json","Accept: application/json"})
 public interface RoleService{
 
-    @RequestLine("POST /role/testFeign")
+    @RequestLine("POST /base/testFeign")
     Role testFeign();
 }

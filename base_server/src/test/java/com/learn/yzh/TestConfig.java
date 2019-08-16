@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by yangbin on 2017/11/17
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = BaseApp.class)
+@SpringBootTest(classes = BaseServer.class)
 @ActiveProfiles("dev")
 @Transactional
 public class TestConfig {
