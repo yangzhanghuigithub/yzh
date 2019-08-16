@@ -24,6 +24,11 @@ public class AuthApp extends WebSecurityConfigurerAdapter {
         SpringApplication.run(AuthApp.class, args);
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//    }
+
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
