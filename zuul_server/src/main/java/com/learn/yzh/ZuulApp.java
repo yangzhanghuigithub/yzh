@@ -1,5 +1,6 @@
 package com.learn.yzh;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -31,6 +32,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @EnableOAuth2Sso
 @Controller
+@EnableApolloConfig(value = "yzh", order = 10)
 @EnableCircuitBreaker // 启动断路器，如果要监控hystrix的流必须开启此注解
 @EnableHystrixDashboard // 开启dashboard，通过图形化的方式监控: 查看 http://127.0.0.1:12082/hystrix.stream
 public class ZuulApp extends WebSecurityConfigurerAdapter {
