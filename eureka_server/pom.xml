@@ -44,6 +44,8 @@
                 </executions>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageTags>0.0.1</imageTags>
+                    <forceTags>true</forceTags>
                     <baseImage>java</baseImage>
                     <entryPoint>["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]</entryPoint>
                     <!--<dockerDirectory>src/main/resources/docker</dockerDirectory>-->
