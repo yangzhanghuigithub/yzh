@@ -21,6 +21,7 @@
       <module>yzh_admin</module>
       <module>auth_server</module>
       <module>secu_server</module>
+      <module>apollo_server</module>
   </modules>
 
   <parent>
@@ -124,6 +125,12 @@
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
           <version>2.1.2.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>1.2.17</version>
+          <scope>compile</scope>
       </dependency>
   </dependencies>
 

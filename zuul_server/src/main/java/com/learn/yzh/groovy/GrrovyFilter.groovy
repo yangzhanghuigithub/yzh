@@ -5,12 +5,13 @@ import com.netflix.zuul.context.RequestContext
 import com.netflix.zuul.exception.ZuulException
 
 import javax.servlet.http.HttpServletRequest
+import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
 class GrrovyFilter extends ZuulFilter{
 
     @Override
     String filterType() {
-        return "pre";
+        return PRE_TYPE;
     }
 
     @Override

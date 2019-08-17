@@ -1,7 +1,7 @@
 package com.learn.yzh.controller;
 
 import com.learn.yzh.service.RoleService;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/role")
 public class RoleController {
 
-    private final Logger logger = Logger.getLogger(RoleController.class);
+    private  static  final org.slf4j.Logger logger = LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
     private RoleService roleService;

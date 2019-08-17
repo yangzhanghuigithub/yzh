@@ -2,7 +2,7 @@ package com.learn.yzh.common.utils;
 
 import com.google.common.collect.Lists;
 import com.learn.yzh.common.utils.secure.CommonProperty;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -24,7 +24,7 @@ import java.util.Map;
  *
  */
 public class FileUploadUtils {
-	private static final Logger logger = Logger.getLogger(FileUploadUtils.class);
+	private  static  final org.slf4j.Logger logger = LoggerFactory.getLogger(FileUploadUtils.class);
 	private CommonProperty commonProperty =SpringContextUtils.getBean(CommonProperty.class);
 	//private static final String Resource_Base_Path = PlatformProperties.getProperty("resource.base.path");
 	private  final String Resource_Base_Path =commonProperty.getPropertyForStr("key");

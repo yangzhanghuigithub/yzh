@@ -1,0 +1,12 @@
+version: '2'
+services:
+    eureka-server:
+      image: yzh/eureka_server
+      ports:
+        - "8000:8000"
+
+    config-server:
+      image: yzh/config-server
+
+    base-server:
+        image: yzh/base-server

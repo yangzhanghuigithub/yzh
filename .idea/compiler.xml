@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="admin_server" />
+        <module name="apollo_server" />
         <module name="auth_server" />
         <module name="base_server" />
         <module name="config_server" />

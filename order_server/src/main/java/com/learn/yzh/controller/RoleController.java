@@ -3,7 +3,7 @@ package com.learn.yzh.controller;
 
 import com.learn.yzh.entity.base.Role;
 import com.learn.yzh.service.RoleService;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class RoleController {
 
-    private final Logger logger = Logger.getLogger(RoleController.class);
+    private  static  final org.slf4j.Logger logger= LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
     private RoleService roleService;

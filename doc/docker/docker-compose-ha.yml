@@ -1,0 +1,41 @@
+#docker-compose scale config-server=3 base-server=3
+version: '2'
+services:
+  peer1:
+    hostname: peer1
+    image: yzh/eureka_server1
+#    links:
+#      - eureka-server2
+#      - eureka-server3
+    ports:
+      - "8000:8000"
+    environment:
+      - spring.profiles.active=dev1
+
+    peer2:
+      hostname: peer2
+      image: yzh/eureka_server2
+#      links:
+#        - eureka-server1
+#        - eureka-server3
+      ports:
+        - "8010:8010"
+      environment:
+        - spring.profiles.active=dev2
+
+    peer3:
+      hostname: peer3
+      image: yzh/eureka_server3
+#      links:
+#        - eureka-server1
+#        - eureka-server2
+      ports:
+        - "8020:8020"
+      environment:
+        - spring.profiles.active=dev3
+
+    config-server:
+      image: yzh/config-server
+
+    base-server:
+      image: yzh/base-server

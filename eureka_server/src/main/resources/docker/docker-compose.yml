@@ -1,6 +1,6 @@
 version: '2'
 services:
-  eureka: eureka-server
+  eureka:
     build: .
-    port:
+    ports:
       - "8000:8000"

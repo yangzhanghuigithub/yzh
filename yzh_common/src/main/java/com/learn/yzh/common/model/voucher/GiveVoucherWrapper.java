@@ -16,7 +16,7 @@ import java.util.Map;
  * @create 2018-12-26 14:44
  */
 public class GiveVoucherWrapper {
-    private static final Logger logger= LoggerFactory.getLogger(GiveVoucherWrapper.class);
+    private static final Logger logger = LoggerFactory.getLogger(GiveVoucherWrapper.class);
     private String businessId;//业务主键ID
     private Integer channel;//发券渠道
     private String memberCode;//会员编码
