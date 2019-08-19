@@ -23,6 +23,9 @@
       <module>secu_server</module>
       <module>apollo_server</module>
       <module>consul_server</module>
+      <module>consul_config</module>
+      <module>gateway_server</module>
+      <module>protobuf_server</module>
   </modules>
 
   <parent>

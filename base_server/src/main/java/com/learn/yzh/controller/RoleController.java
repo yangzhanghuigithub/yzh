@@ -28,7 +28,7 @@ public class RoleController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping(value = "/testFeign", method = RequestMethod.POST)
+    @RequestMapping(value = "/testFeign", method = RequestMethod.GET)
 //    @HystrixCommand(fallbackMethod = "defaltFeign")
     public String test(){
 //        logger.info("===<call base-server===>");

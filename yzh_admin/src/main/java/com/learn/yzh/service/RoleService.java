@@ -1,7 +1,7 @@
 package com.learn.yzh.service;
 
 import com.learn.yzh.config.FeignConfig;
-import com.learn.yzh.entity.Role;
+import com.learn.yzh.entity.base.Role;
 import feign.Headers;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,6 +18,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 @Headers({"Content-Type: application/json","Accept: application/json"})
 public interface RoleService{
 
-    @RequestLine("POST /base/testFeign")
+    @RequestLine("GET /base/testFeign")
     Role testFeign();
 }

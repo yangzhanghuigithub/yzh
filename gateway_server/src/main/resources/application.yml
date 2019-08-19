@@ -1,0 +1,29 @@
+server:
+  port: 8013
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: jd_route
+        uri: http://jd.com:80/
+        predicates:
+        - Path=/jd
+      - id: baidu_route
+        uri: http://baidu.com:80/
+        predicates:
+        - Path=/baidu
+
+logging: ## Spring Cloud Gateway的日志配置
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
