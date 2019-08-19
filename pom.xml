@@ -26,6 +26,8 @@
       <module>consul_config</module>
       <module>gateway_server</module>
       <module>protobuf_server</module>
+      <module>zipkin_server</module>
+      <module>grpc_server</module>
   </modules>
 
   <parent>
@@ -132,6 +134,7 @@
       </dependency>
       <dependency>
           <groupId>log4j</groupId>
+
           <artifactId>log4j</artifactId>
           <version>1.2.17</version>
           <scope>compile</scope>

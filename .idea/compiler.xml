@@ -15,6 +15,8 @@
         <module name="consul_server" />
         <module name="eureka_server" />
         <module name="gateway_server" />
+        <module name="grpc_client" />
+        <module name="grpc_lib" />
         <module name="order_server" />
         <module name="protobuf_server" />
         <module name="secu_server" />
@@ -22,10 +24,16 @@
         <module name="yzh_admin" />
         <module name="yzh_common" />
         <module name="yzh_entity" />
+        <module name="zipkin_server" />
         <module name="zuul_server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ch21-1-discovery-console" target="1.8" />
+      <module name="ch21-1-eureka-server" target="1.8" />
+      <module name="ch21-1-original-service" target="1.8" />
+      <module name="ch21-1-zuul-server" target="1.8" />
+      <module name="gray_discovery" target="1.8" />
       <module name="yj_entity" target="1.7" />
     </bytecodeTargetLevel>
   </component>
