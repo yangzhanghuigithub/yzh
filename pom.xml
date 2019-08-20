@@ -28,6 +28,7 @@
       <module>protobuf_server</module>
       <module>zipkin_server</module>
       <module>grpc_server</module>
+      <module>nacos_server</module>
   </modules>
 
   <parent>
