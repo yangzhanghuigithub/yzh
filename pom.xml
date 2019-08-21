@@ -29,6 +29,8 @@
       <module>zipkin_server</module>
       <module>grpc_server</module>
       <module>nacos_server</module>
+      <module>job_server</module>
+      <module>onlinetaskclient</module>
   </modules>
 
   <parent>

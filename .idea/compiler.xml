@@ -17,7 +17,9 @@
         <module name="gateway_server" />
         <module name="grpc_client" />
         <module name="grpc_lib" />
+        <module name="job_server" />
         <module name="nacos_server" />
+        <module name="onlinetask-client" />
         <module name="order_server" />
         <module name="protobuf_server" />
         <module name="secu_server" />
