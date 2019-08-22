@@ -21,8 +21,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @RestController
 @EnableScheduling
-@MapperScan("com.yj.learn.mapper")
-@ComponentScan(basePackages = {"com.yj.learn"})
+@MapperScan("com.learn.yzh")
+@ComponentScan(basePackages = {"com.learn.yzh"})
 @EnableFeignClients //启用feign进行远程调用
 public class JobApp {
     public static void main( String[] args ) {
