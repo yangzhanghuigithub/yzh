@@ -18,7 +18,7 @@ public class ConsumerMain {
         referenceConfig.setApplication(new ApplicationConfig("hello-service-consumer"));
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol("zookeeper");
-        registryConfig.setAddress("192.168.0.125:2181");
+        registryConfig.setAddress("192.168.0.123:2181,192.168.0.123:2182,192.168.0.123:2183,192.168.0.123:2184,192.168.0.123:2185,192.168.0.123:2186,192.168.0.123:2187");
         referenceConfig.setRegistry(registryConfig);
         referenceConfig.setInterface(HelloService.class);
         HelloService greetingService = referenceConfig.get();

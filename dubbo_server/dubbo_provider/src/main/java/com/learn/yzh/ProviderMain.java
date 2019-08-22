@@ -22,7 +22,7 @@ public class ProviderMain {
         serviceConfig.setApplication(new ApplicationConfig("hello-service-provider"));
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol("zookeeper");
-        registryConfig.setAddress("192.168.0.125:2181");
+        registryConfig.setAddress("192.168.0.123:2181,192.168.0.123:2182,192.168.0.123:2183,192.168.0.123:2184,192.168.0.123:2185,192.168.0.123:2186,192.168.0.123:2187");
         serviceConfig.setRegistry(registryConfig);
         serviceConfig.setInterface(HelloService.class);
         serviceConfig.setRef(new HelloServiceImpl());
