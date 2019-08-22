@@ -13,6 +13,7 @@
         <module name="config_server" />
         <module name="consul_config" />
         <module name="consul_server" />
+        <module name="dubbo_server" />
         <module name="eureka_server" />
         <module name="gateway_server" />
         <module name="grpc_client" />

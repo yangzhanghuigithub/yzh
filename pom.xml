@@ -31,6 +31,7 @@
       <module>nacos_server</module>
       <module>job_server</module>
       <module>onlinetaskclient</module>
+      <module>dubbo_server</module>
   </modules>
 
   <parent>
