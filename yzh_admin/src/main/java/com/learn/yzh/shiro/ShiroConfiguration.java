@@ -49,6 +49,7 @@ public class ShiroConfiguration {
         map.put("/index/mycinema.do**","anon");
         map.put("/index/flychannle.do**","anon");
         map.put("/index/logout.do**","anon");
+        map.put("/actuator/health**","anon");
         //对所有用户认证
         map.put("/**","authc");
         //登录

@@ -1,5 +1,6 @@
 package com.learn.yzh;
 
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -69,5 +70,16 @@ public class YzhApp {
     @LoadBalanced
     RestTemplate restTemplate(){
         return new RestTemplate();
+    }
+
+
+    @Bean(name = "hystrixRegistrationBean")
+    public ServletRegistrationBean servletRegistrationBean() {
+        ServletRegistrationBean registration = new ServletRegistrationBean(
+                new HystrixMetricsStreamServlet(), "/actuator/hystrix.stream");
+        registration.setName("hystrixServlet");
+        registration.setLoadOnStartup(1);
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
+        return registration;
     }
 }
