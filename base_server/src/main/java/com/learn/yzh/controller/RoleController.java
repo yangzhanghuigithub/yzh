@@ -1,5 +1,6 @@
 package com.learn.yzh.controller;
 
+import com.learn.yzh.entity.Role;
 import com.learn.yzh.service.RoleService;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,11 @@ public class RoleController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping(value = "/testFeign", method = RequestMethod.GET)
+    @RequestMapping(value = "/testFeign", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.GET)
 //    @HystrixCommand(fallbackMethod = "defaltFeign")
-    public String test(){
+    public Role test(){
 //        logger.info("===<call base-server===>");
-        return roleService.testFeign().toString();
+        return roleService.testFeign();
 //        Role forObject = restTemplate.getForObject("http://order-server/order/testFeign", Role.class, "");
 //        return forObject.toString();
     }

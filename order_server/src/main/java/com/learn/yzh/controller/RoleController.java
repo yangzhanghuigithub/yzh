@@ -25,7 +25,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(value = "/testFeign")
+    @RequestMapping(value = "/testFeign", produces = {"application/json;charset=UTF-8"})
     public Role test(){
         logger.info("===<be call base-server===>");
 
