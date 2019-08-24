@@ -1,0 +1,12 @@
+server:
+  port: 8087
+  servlet:
+    session:
+      timeout: 30M
+spring:
+  application:
+    name: roncoo-pay-app-order-polling
+logging:
+  config: classpath:logback.xml
+mybatis:
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml
