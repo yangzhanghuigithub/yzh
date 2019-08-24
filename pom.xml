@@ -32,6 +32,7 @@
       <module>job_server</module>
       <module>onlinetask-client</module>
       <module>dubbo_server</module>
+      <module>roncoo-pay</module>
   </modules>
 
   <parent>

@@ -25,6 +25,16 @@
         <module name="onlinetask-client" />
         <module name="order_server" />
         <module name="protobuf_server" />
+        <module name="roncoo-pay-app-notify" />
+        <module name="roncoo-pay-app-order-polling" />
+        <module name="roncoo-pay-app-reconciliation" />
+        <module name="roncoo-pay-app-settlement" />
+        <module name="roncoo-pay-common-core" />
+        <module name="roncoo-pay-service" />
+        <module name="roncoo-pay-web-boss" />
+        <module name="roncoo-pay-web-gateway" />
+        <module name="roncoo-pay-web-merchant" />
+        <module name="roncoo-pay-web-sample-shop" />
         <module name="secu_server" />
         <module name="turbin_server" />
         <module name="yzh_admin" />
