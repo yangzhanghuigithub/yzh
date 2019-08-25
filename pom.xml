@@ -33,6 +33,7 @@
       <module>onlinetask-client</module>
       <module>dubbo_server</module>
       <module>roncoo-pay</module>
+      <module>xxl-job-master</module>
   </modules>
 
   <parent>

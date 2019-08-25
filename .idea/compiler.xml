@@ -37,6 +37,14 @@
         <module name="roncoo-pay-web-sample-shop" />
         <module name="secu_server" />
         <module name="turbin_server" />
+        <module name="xxl-job-admin" />
+        <module name="xxl-job-core" />
+        <module name="xxl-job-executor-sample-frameless" />
+        <module name="xxl-job-executor-sample-jboot" />
+        <module name="xxl-job-executor-sample-jfinal" />
+        <module name="xxl-job-executor-sample-nutz" />
+        <module name="xxl-job-executor-sample-spring" />
+        <module name="xxl-job-executor-sample-springboot" />
         <module name="yzh_admin" />
         <module name="yzh_common" />
         <module name="yzh_entity" />
