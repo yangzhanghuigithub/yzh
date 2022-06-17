@@ -64,7 +64,7 @@
 	<!--版本维护-->
 	<properties>
 		<mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
-		<fastjson.version>1.2.56</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<druid.version>1.1.13</druid.version>
 		<alipay-sdk-java.version>3.4.49.ALL</alipay-sdk-java.version>
 		<!--<alipay-trade-sdk.version>1.0</alipay-trade-sdk.version>-->
